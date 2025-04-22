@@ -9,6 +9,15 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
+exports.getOneUser = async (req, res) => {
+    try {
+        let { data } = await cliente.supabase.from('usuario').select('*').eq('id', req.params.id);
+        res.send(data);
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 exports.postNewUser = async (req, res) => {
     try {
         const { nome, email, data_nascimento } = req.body;
@@ -22,9 +31,7 @@ exports.postNewUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        const userId = req.params.id;
-        
-        const { error, status } = await supabase.from('usuario').delete().eq('id', userId);
+        const { error, status } = await supabase.from('usuario').delete().eq('id', req.params.id);
     return res.status(204).send();
     } catch (error) {
         console.error(error)

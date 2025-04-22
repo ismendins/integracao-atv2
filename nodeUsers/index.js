@@ -9,8 +9,8 @@ const port = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-app.use("/rest/user", userRouter);
-app.use("/rest/task", taskRouter);
+app.use("/api/user", userRouter);
+app.use("/api/task", taskRouter);
 
 app.listen(port, ()=>{
     console.log(`The server is running on http://localhost:${port}`);
