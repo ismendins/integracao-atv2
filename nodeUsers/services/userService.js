@@ -31,8 +31,8 @@ exports.postNewUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        const { error, status } = await supabase.from('usuario').delete().eq('id', req.params.id);
-    return res.status(204).send();
+        const { error, status } = await cliente.supabase.from('usuario').delete().eq('id', req.params.id);
+        res.status(204).json({message: "User was deleted successfully"});
     } catch (error) {
         console.error(error)
     }
